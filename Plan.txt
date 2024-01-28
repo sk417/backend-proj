@@ -1,0 +1,33 @@
+Database:
+Two tables
+Table 1: User Table [Mentor]:
+Schema: Name ,Email(primary) , Password, DOB, Gender
+
+Table 2: Mentee Table:
+Schema: Name, Week, Comment, email
+
+
+Sudheer
+Authentication
+Signup :
+Login : 
+
+Mihir:
+Add Mentee
+Add: week 0 
+Delete: 
+
+Vergab:
+Comments localhost:8000/:email/
+create : req=name,week   insert into table name,email,week,comment
+delete : req=name,week   
+update :  req=name,week
+get All : 
+
+
+//frontend wla se input aur output ki baat krlena
+
+
+
+
+
