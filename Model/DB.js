@@ -1,13 +1,13 @@
-const { Client } = require('pg');
+const { Pool } = require("pg");
+require("dotenv").config({path: './backend-proj/.env'});
 
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'jman_data',
-  password: 'Sudheer@123',
-  port: 5432,
+console.log(process.env.DATABASE_URL);
+
+const client = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: false
 });
 
-client.connect();
+
 
 module.exports = client;

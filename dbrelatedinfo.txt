@@ -1,0 +1,25 @@
+SCHEMA OF THE USERS AND MENTEE TABLES
+
+USERS TABLE
+
+CREATE TABLE Users (
+    email VARCHAR(255) PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    DOB VARCHAR(255) 
+);
+
+
+MENTEES TABLE
+CREATE TABLE Mentees (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    week INT NOT NULL,
+    comment VARCHAR(255) ,
+    users_email VARCHAR(255) ,
+    FOREIGN KEY(users_email)
+    REFERENCES Users(email)
+    ON DELETE SET NULL
+);
+
+

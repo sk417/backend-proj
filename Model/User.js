@@ -3,8 +3,8 @@ const {createUser, getAlluser} = require('./Query');
 
 const addUser = async (userData) => {
     
-    const {email, phone, firstName, lastName, gender, dob} = userData;
-    const result = await db.query(createUser, [email, phone, firstName, lastName, gender, dob]);
+    const {email, name,password ,dob} = userData;
+    const result = await db.query(createUser, [email, name,password ,dob]);
     return result.rows[0];
 }
 
