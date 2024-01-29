@@ -12,3 +12,9 @@ const registar =  async (req, res) =>{
 module.exports = {
     registar
 }
+
+
+
+
+//create //update //delete//
+
