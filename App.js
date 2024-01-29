@@ -6,8 +6,6 @@ const router = require('./Controller/Router/Route');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-console.log(process.env.DATABASE_URL);
-
 app.use(bodyParser.json());
 
 app.use('/api/users', router);
