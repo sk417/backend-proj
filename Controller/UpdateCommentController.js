@@ -1,31 +1,29 @@
 const client = require("../Model/DB");
-const { createComment, deleteComment } = require("../Model/Query");
+const { createComment, deleteComment,updateComment } = require("../Model/Query");
 const { checkDate, getWeek } = require("../helperfunctions/checkDate");
-const { deletecomment } = require("../helperfunctions/typevalidation");
+const { updatecomment } = require("../helperfunctions/typevalidation");
 
 
 
 
-const dcomment = async (req,res)=>{
+const ucomment = async (req,res)=>{
 
     const body = req.body;
-    const parse = deletecomment.safeParse(body);
+    const parse = updatecomment.safeParse(body);
 
-    if(!parse.success)   //type validation
+    if(!parse.success)   //type validation  
     {
         return res.status(400).json({
             msg : "Incorrect inputs"
         })
     }
     else{
-        const {id} = body;
+        const {comment,id} = body;
    
 
             try {
 
-            const result = await client.query(deleteComment,[id]);   //deleting comment
-
-
+            const result = await client.query(updateComment,[comment,id]);   //updating comment
 
 
             if(result.rowCount==0)
@@ -34,7 +32,7 @@ const dcomment = async (req,res)=>{
         })
 
             return res.status(200).json({
-                msg : "Comment deleted",
+                msg : "Comment updated",
                 comment_id : id
             })
                 
@@ -51,5 +49,5 @@ const dcomment = async (req,res)=>{
 
 
 module.exports = {
-    dcomment
+    ucomment
 }

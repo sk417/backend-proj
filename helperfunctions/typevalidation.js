@@ -12,14 +12,19 @@ const comment = zod.object({
 
 //delete comment
 const deletecomment = zod.object({
-    users_email : zod.string().email(),
-    week : zod.number(),
-    month : zod.number(),
     id : zod.number()
+})
+
+//update comment
+const updatecomment = zod.object({
+    id : zod.number(),
+    comment : zod.string()
 })
 
 
 module.exports = {
     comment,
-    deletecomment
+    deletecomment,
+    updatecomment
+
 }
