@@ -6,8 +6,6 @@ async function checkDate(email){
 
     const week = getWeek(new Date().getDate());
 
-    console.log(month,week);
-
 
     try {
     const result = await client.query('SELECT * FROM mentees WHERE (month =$1 AND week =$2 AND users_email=$3) ',[month,week,email]);
