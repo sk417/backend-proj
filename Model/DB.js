@@ -1,5 +1,8 @@
 const { Pool } = require("pg");
-require("dotenv").config({path: './backend-proj/.env'});
+require("dotenv").config();
+
+
+
 
 
 
