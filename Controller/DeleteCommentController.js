@@ -23,7 +23,12 @@ const dcomment = async (req,res)=>{
 
             try {
 
-            const result = await client.query(deleteComment,[id]);   //creating comment
+            const result = await client.query(deleteComment,[id]);   //deleting comment
+
+            if(result.rowCount==0)
+            return res.status(400).json({
+            msg : "Comment does not exist"
+        })
 
             return res.status(200).json({
                 msg : "Comment deleted",
