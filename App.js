@@ -10,7 +10,7 @@ console.log(process.env.PORT);
 
 app.use(bodyParser.json());
 
-app.use('/api', router);
+app.use('/api/users', router);
 
 
 app.listen(PORT, () => {

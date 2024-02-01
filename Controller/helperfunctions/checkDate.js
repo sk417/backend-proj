@@ -1,4 +1,5 @@
-const client = require("../Model/DB");
+const client = require("../../Model/DB");
+const { checkDatequery } = require("../../Model/Query");
 
 async function checkDate(email){
 
@@ -8,9 +9,8 @@ async function checkDate(email){
 
 
     try {
-    const result = await client.query('SELECT * FROM mentees WHERE (month =$1 AND week =$2 AND users_email=$3) ',[month,week,email]);
+    const result = await client.query( checkDatequery,[month,week,email]);
 
-    // console.log(result.rows.length);
 
     if(result.rows.length === 0)
     {

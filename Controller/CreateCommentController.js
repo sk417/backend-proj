@@ -1,12 +1,12 @@
 const client = require("../Model/DB");
 const { createComment } = require("../Model/Query");
-const { checkDate, getWeek } = require("../helperfunctions/checkDate");
-const { comment } = require("../helperfunctions/typevalidation");
+const { checkDate, getWeek } = require("./helperfunctions/checkDate");
+const { comment } = require("./helperfunctions/typevalidation");
 
 
 
 
-const ccomment = async (req,res)=>{
+const createcommentcontroller = async (req,res)=>{
 
     const body = req.body;
     const parse = comment.safeParse(body);
@@ -63,5 +63,5 @@ const ccomment = async (req,res)=>{
 
 
 module.exports = {
-    ccomment
+    createcommentcontroller
 }

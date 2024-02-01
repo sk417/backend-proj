@@ -1,12 +1,12 @@
 const client = require("../Model/DB");
 const { createComment, deleteComment } = require("../Model/Query");
-const { checkDate, getWeek } = require("../helperfunctions/checkDate");
-const { deletecomment } = require("../helperfunctions/typevalidation");
+const { checkDate, getWeek } = require("./helperfunctions/checkDate");
+const { deletecomment } = require("./helperfunctions/typevalidation");
 
 
 
 
-const dcomment = async (req,res)=>{
+const deletecommentcontroller = async (req,res)=>{
 
     const body = req.body;
     const parse = deletecomment.safeParse(body);
@@ -51,5 +51,5 @@ const dcomment = async (req,res)=>{
 
 
 module.exports = {
-    dcomment
+    deletecommentcontroller
 }
