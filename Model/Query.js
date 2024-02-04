@@ -8,8 +8,10 @@ const createComment = 'INSERT INTO mentees (name,week,comment,users_email,month)
 const deleteComment = 'DELETE FROM  mentees WHERE id=$1 RETURNING *;' ;
 const updateComment = 'UPDATE mentees SET comment=$1 WHERE id=$2 RETURNING *' ;
 
+const getComment = 'SELECT name,week,id,comment FROM mentees WHERE users_email=$1 GROUP by (name,week,comment,id) ORDER BY name' ;
 
-const checkDatequery = 'SELECT * FROM mentees WHERE (month =$1 AND week =$2 AND users_email=$3)';
+
+const checkDatequery = 'SELECT * FROM mentees WHERE (month =$1 AND week =$2  AND name=$3 AND users_email=$4)';
 
 
 
@@ -19,5 +21,6 @@ module.exports = {
     createComment,
     deleteComment,
     updateComment,
-    checkDatequery
+    checkDatequery,
+    getComment
 }

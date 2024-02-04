@@ -22,9 +22,14 @@ const updatecomment = zod.object({
 })
 
 
+//get all comment
+const getcomments = zod.string().email();
+
+
 module.exports = {
     comment,
     deletecomment,
-    updatecomment
+    updatecomment,
+    getcomments
 
 }

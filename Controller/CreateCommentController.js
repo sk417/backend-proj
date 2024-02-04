@@ -20,7 +20,7 @@ const createcommentcontroller = async (req,res)=>{
     else{
         const {name,comment,users_email} = body;
 
-        const t = await (checkDate(users_email)) ;    
+        const t = await (checkDate(name,users_email)) ;    
 
 
         if(t==true){    //checking if week and month are okay
@@ -50,7 +50,7 @@ const createcommentcontroller = async (req,res)=>{
         {
             return res.status(400).json(
                 {
-                    msg : "Comment already present in week : "+(getWeek(new Date().getDate()))+" and month : "+(new Date().getMonth() +1)
+                    msg : "Comment already present in week : "+(getWeek(new Date().getDate()))+" and month : "+(new Date().getMonth() +1) +" for "+ (body.name)
                 }
             )
 

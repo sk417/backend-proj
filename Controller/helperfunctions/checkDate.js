@@ -1,15 +1,17 @@
 const client = require("../../Model/DB");
 const { checkDatequery } = require("../../Model/Query");
+const { DateTime } = require("luxon");
 
-async function checkDate(email){
+
+async function checkDate(name,email){
 
     const month = new Date().getMonth() +1;
 
-    const week = getWeek(new Date().getDate());
+    const week = getWeek();
 
 
     try {
-    const result = await client.query( checkDatequery,[month,week,email]);
+    const result = await client.query( checkDatequery,[month,week,name,email]);
 
 
     if(result.rows.length === 0)
@@ -38,15 +40,14 @@ async function checkDate(email){
 }
 
 
-function getWeek(day){
-    if(day>=1 && day<=7)
-    return 1;
-    else if(day<=14)
-    return 2;
-    else if(day<=21)
-    return 3;
-    else
-    return 4;
+function getWeek(){
+
+    const t = new Date();
+
+
+    const weekno = DateTime.local(t.getFullYear(), t.getMonth()+1, t.getDate()).weekNumber;
+
+    return weekno;
 }
 
 
