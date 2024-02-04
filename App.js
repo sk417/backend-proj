@@ -6,8 +6,6 @@ require("dotenv").config();   //.env is in root folder here
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-console.log(process.env.PORT);
-
 app.use(bodyParser.json());
 
 app.use('/api/users', router);
