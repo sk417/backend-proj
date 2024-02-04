@@ -1,19 +1,20 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const registration = require('../RegistrationController');
-const client = require('../../Model/DB');
-const { createcommentcontroller } = require('../CreateCommentController');
-const { deletecommentcontroller } = require('../DeleteCommentController');
-const { updatecommentcontroller } = require('../UpdateCommentController');
-const { getcommentcontroller } = require('../GetAllcommentController');
+const MentorController = require("../MentorController");
+const client = require("../../Model/DB");
+const CommentController = require("../CommentController");
+const { comment } = require("../helperfunctions/typevalidation");
 
-router.post("/registration", registration.registar);
+router.post("/registration", MentorController.registar);
 
+router.post("/login", MentorController.signin);
 
-router.route("/comments").post(createcommentcontroller).delete(deletecommentcontroller).put(updatecommentcontroller);
+router
+  .route("/comments")
+  .post(CommentController.addComment)
+  .delete(CommentController.deleteCommentById)
+  .put(CommentController.updateCommentById);
 
-router.get('/comments/:email',getcommentcontroller);
-
-
+router.get("/comments/:email", CommentController.getWeeklyComment);
 
 module.exports = router;

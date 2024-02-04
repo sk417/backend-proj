@@ -1,6 +1,12 @@
 const getAllUser = `SELECT * FROM "User";`;
 
-const createUser = `INSERT INTO users (email, name,password ,dob) VALUES ($1, $2, $3, $4) RETURNING *;`;
+const createUser = `INSERT INTO "users" (email, name,password ,dob) VALUES ($1, $2, $3, $4) RETURNING *;`;
+
+const isExist = `SELECT * FROM "users" WHERE email = $1;`;
+
+const getPassword = `SELECT password FROM "users" WHERE email = $1;`;
+
+const getUserByEmail = `SELECT * FROM "users" WHERE email = $1;`;
 
 const createComment = 'INSERT INTO mentees (name,week,comment,users_email,month) VALUES ($1,$2,$3,$4,$5) RETURNING *;' ;
 
@@ -22,5 +28,8 @@ module.exports = {
     deleteComment,
     updateComment,
     checkDatequery,
-    getComment
+    getComment,
+    isExist,
+    getPassword,
+    getUserByEmail
 }
