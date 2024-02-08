@@ -1,15 +1,15 @@
 const db = require('./DB');
 const Query  = require('./Query');
-const Middleware = require('../Middleware/Hash'); 
+const Hash = require('../Middleware/Hash'); 
 
 const addUser = async (userData) => { 
-    const {email, name, password ,dob} = userData;
+    const {email, name, password ,dob, designation, gender, mobile_no} = userData;
     const isExist = await db.query(Query.isExist, [email]);
     if(isExist === 1){
         return "Email already exist";
     }
-    const hashPass = await Middleware.hashPassword(password);
-    const result = await db.query(Query.createUser, [email, name,hashPass ,dob]);
+    const hashPass = await Hash.hashPassword(password);
+    const result = await db.query(Query.createUser, [email, name,hashPass ,dob, designation, gender, mobile_no]);
     return result.rows[0];
 }
 
@@ -25,13 +25,26 @@ const login = async (userData) => {
     }
     const user = await db.query(Query.getPassword, [email]);
     const dbPassword = user.rows[0].password;
-    const isMatch = await Middleware.comparePassword(password, dbPassword);
+    const isMatch = await Hash.comparePassword(password, dbPassword);
     if(isMatch){
       response.status = 200;
-      response.data = {
-        name : isExist.rows[0].name,
-        email : isExist.rows[0].email,
-        dob : isExist.rows[0].dob
+      if(isExist.rows[0].email === "admin@jman.com"){
+        const res = await db.query(Query.getAdminDashboardData);
+        const t= res.rows;
+        response.data = {
+          ...t,
+          name : isExist.rows[0].name,
+          email : isExist.rows[0].email
+        }
+      }
+      else{
+        const res = await db.query(Query.getMentorDashboardData, [email]);
+        let t=res.rows;
+        response.data = {
+          ...t,
+          mentor_name : isExist.rows[0].name,
+          mentor_email : isExist.rows[0].email
+        }
       }
       return response;
     }
@@ -40,10 +53,6 @@ const login = async (userData) => {
         response.data = "Invalid Credential";
         return response;
     }
-}
-
-const getAllUsers = async (userData) => {
-    const {mentor_id} = userData;
 }
 
 module.exports = {
