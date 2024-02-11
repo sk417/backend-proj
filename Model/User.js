@@ -33,8 +33,9 @@ const login = async (userData) => {
         const t= res.rows;
         response.data = {
           ...t,
+          role : "ADMIN",
           name : isExist.rows[0].name,
-          email : isExist.rows[0].email
+          id : isExist.rows[0].id
         }
       }
       else{
@@ -43,7 +44,9 @@ const login = async (userData) => {
         response.data = {
           ...t,
           mentor_name : isExist.rows[0].name,
-          mentor_email : isExist.rows[0].email
+          role : "MENTOR",
+          // mentor_email : isExist.rows[0].email
+          id : isExist.rows[0].id
         }
       }
       return response;
