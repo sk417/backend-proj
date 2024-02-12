@@ -8,7 +8,7 @@ const addComment = async(data) => {
     const message = data.message;
     // Logic for getting date
     const dbData = await db.query(Query.getStartDateByMenteeId, [mentee_id]);
-    const start_date = dbData.rows[0].start_date;
+    const start_date = (dbData.rows[0].start_date);
     const currentDate = new Date();
     const formateCurrentDate = format(currentDate, 'yyyy-MM-dd');
     let week = differenceInWeeks(formateCurrentDate, start_date);
@@ -34,7 +34,8 @@ const updateCommentById = async(data) =>{
 
     const isExist = await db.query(Query.getCommentById, [id]);
 
-    if(isExist.fields.length > 0){
+
+    if(isExist.rows.length > 0){
         const result = await db.query(Query.updateCommentById, [id, message]);
         response.status = 200;
         response.message = "Updated successfuly";
@@ -53,7 +54,7 @@ const deleteCommentById = async(data) =>{
     const id = data.id;
     const isExist = await db.query(Query.getCommentById, [id]);
 
-    if(isExist.fields.length > 0){
+    if(isExist.rows.length > 0){
         const result = await db.query(Query.deleteCommentById, [id]);
         response.status=200;
         response.message="Deleted successfully.";
@@ -62,7 +63,7 @@ const deleteCommentById = async(data) =>{
     }
     else{
         response.status = 400;
-        response.message = "Internal server error";
+        response.message = "Comment does not exist";
         return response;
     }
 }
@@ -71,18 +72,19 @@ const getAllComments = async(data) =>{
     const response = {};
     const mentee_id=data.mentee_id;
     const isExist = await db.query(Query.getAllComments, [mentee_id]);
-    if(isExist.fields.length > 0){
+    if(isExist.rows.length > 0){
         response.status = 200;
-        response.message = "User comment found successfully.";
+        response.message = "Mentee comment found successfully.";
         response.data = isExist.rows;
         return response;
     }
     else{
         response.status = 400;
-        response.message = "User comment does not exist.";
+        response.message = "Mentee comment does not exist.";
         return response;
     }
 }
+
 
 module.exports = {
     addComment,
