@@ -3,9 +3,9 @@ const createUser = `INSERT INTO "mentors" (email, name, password, dob, designati
 
 const isExist = `SELECT * FROM "mentors" WHERE email = $1;`;
 
-const getAdminDashboardData = `SELECT * FROM "mentors";`;
+const getAdminDashboardData = `SELECT id, name FROM "mentors";`;
 
-const getMentorDashboardData = `SELECT mentees.* FROM "mentees" JOIN "mentors" ON mentees.mentor_id = mentors.id WHERE mentors.email = $1;`;
+const getMentorDashboardData = `SELECT mentees.id as id, mentees.name as name FROM "mentees" JOIN "mentors" ON mentees.mentor_id = mentors.id WHERE mentors.email = $1;`;
 
 const getPassword = `SELECT password FROM "mentors" WHERE email = $1;`;
 
