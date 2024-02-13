@@ -27,7 +27,7 @@ get All :
 
 //frontend wla se input aur output ki baat krlena
 
-//bugs - week concept in checkWeek()
+//bugs - week concept in checkWeek() - fixed
 
 
 

@@ -13,6 +13,8 @@ router.post("/mentees", MenteeController.addMentee);
 
 router.delete("/mentees", MenteeController.deleteMenteeById);
 
+router.get("/mentees",MenteeController.getMenteebyId);
+
 // for comment
 
 router.get("/get-comments", CommentController.AllCommentOfMentee);
@@ -21,6 +23,7 @@ router
   .route("/comments")
   .post(CommentController.AddCommentOfMentee)
   .delete(CommentController.DeleteCommentOfMentee)
-  .put(CommentController.UpdateCommentOfMentee);
+  .put(CommentController.UpdateCommentOfMentee)
+  
 
 module.exports = router;

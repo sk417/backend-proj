@@ -28,7 +28,22 @@ const deleteMenteeById = async(req, res) => {
     }
 }
 
+const getMenteebyId = async(req,res) =>{
+
+    try {
+        const data = {
+            id : req.query.id
+        };
+        const result = await mentee.getMentees(data);
+        res.status(result.status).json(result);
+       } catch (error) {
+        res.status(500).send("Internal Server Error");
+        console.log(error);
+    }
+}
+
 module.exports = {
     addMentee,
-    deleteMenteeById
+    deleteMenteeById,
+    getMenteebyId
 }

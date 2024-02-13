@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const router = require('./Controller/Router/Route');
-const cors = require('cors')
 require("dotenv").config();   //.env is in root folder here
 
 const app = express();
