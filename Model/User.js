@@ -32,7 +32,7 @@ const login = async (userData) => {
         const res = await db.query(Query.getAdminDashboardData);
         const t= res.rows;
         response.data = {
-          ...t,
+          mentors:t,
           role : "ADMIN",
           name : isExist.rows[0].name,
           id : isExist.rows[0].id
@@ -42,7 +42,7 @@ const login = async (userData) => {
         const res = await db.query(Query.getMentorDashboardData, [email]);
         let t=res.rows;
         response.data = {
-          ...t,
+          mentees:t,
           mentor_name : isExist.rows[0].name,
           role : "MENTOR",
           // mentor_email : isExist.rows[0].email

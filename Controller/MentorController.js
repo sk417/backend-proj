@@ -13,7 +13,7 @@ const registar =  async (req, res) =>{
 const signin = async (req, res) => {
     try{
         const result = await userModel.login(req.body); 
-        res.status(result.status).json(result.data);
+        res.status(result.status).json(result);
     }
     catch(err){
         console.log(err);
