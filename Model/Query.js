@@ -38,7 +38,7 @@ const addMentee = `INSERT INTO "mentees" (mentor_id, name, email, start_date) VA
 const deleteMentee = `DELETE FROM "mentees" WHERE id = $1;`;
 
 
-const getMentee = `SELECT * FROM mentees WHERE mentor_id = $1`;
+const getMenteesByMentorId = `SELECT id, name FROM "mentees" WHERE mentor_id = $1`;
 
 const getStartDateByMenteeId = `SELECT start_date FROM "mentees" WHERE id=$1;`;
 
@@ -53,7 +53,7 @@ module.exports = {
     deleteCommentById,
     addComment,
     addMentee,
-    getMentee,
+    getMenteesByMentorId,
     isExist,
     getPassword,
     getUserByEmail,

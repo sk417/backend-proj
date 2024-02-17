@@ -13,7 +13,7 @@ router.post("/mentees", MenteeController.addMentee);
 
 router.delete("/mentees", MenteeController.deleteMenteeById);
 
-router.get("/mentees",MenteeController.getMenteebyId);
+router.get("/get-mentees/:id",MenteeController.getMenteebyId);
 
 // for comment
 

@@ -31,7 +31,7 @@ const deleteMentees =  async(data) =>{
 
 const getMentees = async(data)=>{
     const mentor_id = data.id;
-    const result = await db.query(Query.getMentee,[mentor_id]);
+    const result = await db.query(Query.getMenteesByMentorId,[mentor_id]);
 
     const response = {};
     if(result.rows.length === 0)
@@ -40,14 +40,8 @@ const getMentees = async(data)=>{
         response.message = "Mentees do not exist";
     }
     else{
-
-        const mentee_names = [];
-        for (let i = 0; i < result.rows.length; i++) {
-            mentee_names.push(result.rows[i].name);
-            
-        }
         response.status = 200;
-        response.names = mentee_names;
+        response.mentees = result.rows;
 
     }
 
