@@ -35,7 +35,10 @@ const login = async (userData) => {
           mentors:t,
           role : "ADMIN",
           name : isExist.rows[0].name,
-          id : isExist.rows[0].id
+          id : isExist.rows[0].id,
+          email : isExist.rows[0].email,
+          designation : isExist.rows[0].designation,
+          dob : isExist.rows[0].dob
         }
       }
       else{
@@ -45,8 +48,10 @@ const login = async (userData) => {
           mentees:t,
           mentor_name : isExist.rows[0].name,
           role : "MENTOR",
-          // mentor_email : isExist.rows[0].email
-          id : isExist.rows[0].id
+          email : isExist.rows[0].email,
+          id : isExist.rows[0].id,
+          designation : isExist.rows[0].designation,
+          dob : isExist.rows[0].dob
         }
       }
       return response;
