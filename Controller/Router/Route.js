@@ -17,7 +17,7 @@ router.get("/get-mentees/:id",MenteeController.getMenteebyId);
 
 // for comment
 
-router.get("/get-comments", CommentController.AllCommentOfMentee);
+router.get("/get-comments/:id", CommentController.AllCommentOfMentee);
 
 router
   .route("/comments")
