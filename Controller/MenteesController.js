@@ -32,7 +32,7 @@ const getMenteebyId = async(req,res) =>{
 
     try {
         const data = {
-            id : req.query.id
+            id : req.params.id
         };
         const result = await mentee.getMentees(data);
         res.status(result.status).json(result);
