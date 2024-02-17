@@ -44,7 +44,7 @@ const DeleteCommentOfMentee = async(req, res) =>{
 const AllCommentOfMentee = async(req, res) => {
   try{
     const data = {
-      mentee_id : req.query.id
+      mentee_id : req.params.id
     };
     const result = await comment.getAllComments(data);
     res.status(result.status).json(result);
